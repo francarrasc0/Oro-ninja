@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oro ninja</title>
+    <style>
+        .green { color: green; }
+        .red { color: red; }
+    </style>
+</head>
+
+<body>
+    <h2>Gold: {{ session['gold'] }}</h2>
+    <h2>Activities:</h2>
+    <ul>
+        {% for activity in session['activities'] %}
+            <li class="{% if activity['color'] == 'green' %}green{% else %}red{% endif %}">
+                {{ activity['message'] }}
+            </li>
+        {% endfor %}
+    </ul>
+    <form action="/process_money" method="post">
+        <input type="hidden" name="building" value="farm">
+        <input type="submit" value="Farm">
+    </form>
+    <form action="/process_money" method="post">
+        <input type="hidden" name="building" value="cave">
+        <input type="submit" value="Cave">
+    </form>
+    <form action="/process_money" method="post">
+        <input type="hidden" name="building" value="house">
+        <input type="submit" value="House">
+    </form>
+    <form action="/process_money" method="post">
+        <input type="hidden" name="building" value="casino">
+        <input type="submit" value="Casino">
+    </form>
+    <form action="/reset" method="get">
+        <input type="submit" value="Reset">
+    </form>
+</body>
+
+</html>
